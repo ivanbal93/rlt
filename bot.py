@@ -32,9 +32,7 @@ async def main_func(message: types.Message) -> None:
         message_dict = json.loads(message.text)
         collection = collection_find(database.sample_collection, message_dict)
         r = agregation(collection, message_dict['group_type'])
-        result = '{' + (f'"dataset": {r["dataset"]}, '
-             f'"labels": {r["labels"]}') + '}'
-
+        result = json.dumps(r)
     except:
         result = 'Ошибка формата ввода'
 
